@@ -4,7 +4,10 @@ import { Location } from '@angular/common';
  
 import { Country } from '../country';
 import { CountryService } from '../country.service';
- 
+import { NotificationService } from '../notifications.service';
+import { SimpleNotificationsModule } from 'angular2-notifications';
+import { NotificationsService } from 'angular2-notifications';
+
 @Component({
     selector: 'app-country-detail',
     templateUrl: './country-detail.component.html',
@@ -16,7 +19,8 @@ export class CountryDetailComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private countryService: CountryService,
-        private location: Location
+        private location: Location,
+        private notificationService: NotificationService,
     ) { }
  
     ngOnInit(): void {
@@ -30,5 +34,13 @@ export class CountryDetailComponent implements OnInit {
  
     goBack(): void {
         this.location.back();
+    }
+
+    noty(): void{
+        this.notificationService.success('success','success');
+        this.notificationService.alert('alert','alert');
+        this.notificationService.info('info','info');
+        this.notificationService.warn('warn','warn');
+        this.notificationService.bare('bare','bare');
     }
 }
